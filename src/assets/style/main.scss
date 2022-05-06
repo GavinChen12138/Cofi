@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'DIN Condensed Bold';
+    src: url('./assets/fonts/DIN Condensed Bold.ttf');
+}
+
+$border-test: 1px black solid;
+$font-title: 'DIN Condensed Bold', sans-serif;
+$box-shadow-common: 0 2px 6px 0 rgba(136, 148, 171, 0.4), 0 24px 20px -24px rgba(71, 82, 107, 0.1);
+.layout-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
