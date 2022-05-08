@@ -2,18 +2,9 @@
   <div class="layout-center" style="margin-top: 50px">
     <div class="search-wrapper">
       <input class="search-input" type="text" placeholder="Search" />
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        class="feather feather-search"
-        viewBox="0 0 24 24"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search"
+        viewBox="0 0 24 24">
         <defs></defs>
         <circle cx="11" cy="11" r="8"></circle>
         <path d="M21 21l-4.35-4.35"></path>
@@ -52,6 +43,7 @@ import DrinkCard from "/Users/fan/Desktop/Ex/FP1/FP1/src/components/DrinkCard.vu
     opacity: 0.6;
   }
 }
+
 .search-wrapper {
   border-radius: 20px;
   background-color: var(--search-area-bg);
@@ -70,6 +62,7 @@ import DrinkCard from "/Users/fan/Desktop/Ex/FP1/FP1/src/components/DrinkCard.vu
     box-shadow: none;
   }
 }
+
 .drink-card-wrapper {
   display: flex;
   flex-wrap: wrap;

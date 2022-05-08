@@ -1,8 +1,7 @@
 <template>
   <nav-tab></nav-tab>
-  <router-view />
   <div class="phoneview">
-    <orderView></orderView>
+    <router-view></router-view>
   </div>
 </template>
 <style lang="scss" scoped>
