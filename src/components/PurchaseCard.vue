@@ -1,11 +1,22 @@
 <template>
   <div class="card">
-    <div class="layout-center">112233</div>
+    <div class="layout-center">
+      <div class="card-header">
+        <h3>{{ title }}</h3>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    title: {
+      type: String,
+      required: true
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>

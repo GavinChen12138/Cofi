@@ -1,9 +1,9 @@
 <template>
   <div class="header-title">{{ headerTitle }}</div>
-  <nav class="tabbar">
+  <nav class="tabbar" setActiveMenu="menu-1">
     <div>
       <input id="menu-1" type="radio" name="menu" checked />
-      <label for="menu-1">
+      <label for="menu-1" @click="toOrder">
         <svg
           width="277px"
           height="416px"
@@ -42,10 +42,10 @@
             </g>
           </g>
         </svg>
-        <span>{{ tabList[currentTabIndex].label }}</span>
+        <span>Coffee</span>
       </label>
       <input id="menu-2" type="radio" name="menu" />
-      <label for="menu-2">
+      <label for="menu-2" @click="toPurchase">
         <svg
           width="137px"
           height="191px"
@@ -73,10 +73,10 @@
             </g>
           </g>
         </svg>
-        <span>{{ tabList[currentTabIndex + 1].label }}</span>
+        <span>Purchase</span>
       </label>
       <input id="menu-3" type="radio" name="menu" />
-      <label for="menu-3">
+      <label for="menu-3" @click="toMy">
         <svg
           width="126px"
           height="92px"
@@ -112,7 +112,7 @@
             </g>
           </g>
         </svg>
-        <span>{{ tabList[currentTabIndex + 2].label }}</span>
+        <span>My</span>
       </label>
       <span></span>
     </div>
@@ -135,39 +135,39 @@ export default {
   data() {
     return {
       headerTitle: "MENU",
-      currentView: "orderView",
-      currentTab: "order",
-      currentTabIndex: 0,
-      tabList: [
+      menu: [
         {
-          name: "coffee",
-          label: "Coffee",
-          icon: "order",
-          view: "orderView",
-          active: true,
+          name: "Home",
+          icon: "home",
+          path: "/",
         },
         {
-          name: "purchase",
-          label: "Purchase",
-          icon: "purchase",
-          view: "/purchaseView",
-          active: false,
+          name: "Purchase",
+          path: "/purchase",
         },
+
         {
-          name: "my",
-          label: "My",
-          icon: "my",
-          view: "myView",
-          active: false,
+          name: "My",
+          path: "/my",
         },
       ],
     };
   },
+  mounted() {
+    this.$router.push("/");
+  },
   methods: {
-    handleTabChange(tab) {
-      this.currentTab = tab.name;
-      this.currentTabIndex = this.tabList.indexOf(tab);
-      this.currentView = tab.view;
+    toPurchase() {
+      this.$router.push("/purchase");
+      this.headerTitle = "PURCHASE";
+    },
+    toMy() {
+      this.$router.push("/my");
+      this.headerTitle = "MY";
+    },
+    toOrder() {
+      this.$router.push("/");
+      this.headerTitle = "MENU";
     },
   },
 };
