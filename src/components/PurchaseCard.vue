@@ -1,9 +1,16 @@
 <template>
   <div class="card">
     <div class="layout-center">
-      <div class="card-header">
-        <h3>{{ title }}</h3>
+      <div class="card-content-layout">
+        <div class="card-content-layout-pic">
+          <img class="order-pic" :src="drinkImageUrl" alt="">
+        </div>
+        <div class="card-content-layout-text">
+          <div class="card-content-layout-text-name">{{ drinkName }}</div>
+          <div class="card-content-layout-text-prop">{{ drinkProp }}</div>
+        </div>
       </div>
+      <div class="card-ordernumber">Order Number is<br> 1123</div>
     </div>
   </div>
 </template>
@@ -11,19 +18,74 @@
 <script>
 export default {
   props: {
-    title: {
-      type: String,
-      required: true
+    item: {
+      type: Object,
+      required: false,
+    }
+  },
+  data() {
+    return {
+      drinkImageUrl: "src/assets/images/coffee1.png",
+      drinkName: "Coffee",
+      drinkProp: "Ice",
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
 .card {
   margin: 10px;
   padding: 10px;
-  border: $border-test;
+  box-shadow: $box-shadow-common;
   border-radius: 0.5rem;
+}
+
+.layout-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-content-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-content-layout-pic {
+  width: 20%;
+}
+
+.order-pic {
+  width: 100%;
+}
+
+.card-content-layout-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-self: center;
+}
+
+.card-content-layout-text-name {
+  font-size: 1.8rem;
+  font-weight: lighter;
+  font-family: $font-title;
+  width: 100%;
+}
+
+.card-content-layout-text-prop {
+  font-family: $font-title;
+  width: 100%;
+}
+
+.card-ordernumber {
+  font-size: 1.2rem;
+  font-weight: lighter;
+  font-family: $font-title;
+  margin-top: 20px;
 }
 </style>
