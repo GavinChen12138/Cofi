@@ -10,7 +10,7 @@
           <div class="card-content-layout-text-prop">{{ drinkProp }}</div>
         </div>
       </div>
-      <div class="card-ordernumber">Order Number is<br> 1123</div>
+      <div class="card-ordernumber">Order Code is<br> 1123</div>
     </div>
   </div>
 </template>
