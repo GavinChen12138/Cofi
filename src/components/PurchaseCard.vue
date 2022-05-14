@@ -3,14 +3,17 @@
     <div class="layout-center">
       <div class="card-content-layout">
         <div class="card-content-layout-pic">
-          <img class="order-pic" :src="drinkImageUrl" alt="">
+          <img class="order-pic" :src="drinkImageUrl" alt="" />
         </div>
         <div class="card-content-layout-text">
           <div class="card-content-layout-text-name">{{ drinkName }}</div>
           <div class="card-content-layout-text-prop">{{ drinkProp }}</div>
         </div>
       </div>
-      <div class="card-ordernumber">Order Code is<br> 1123</div>
+      <div class="card-ordernumber">
+        Order Code is<br />
+        1123
+      </div>
     </div>
   </div>
 </template>
@@ -21,16 +24,16 @@ export default {
     item: {
       type: Object,
       required: false,
-    }
+    },
   },
   data() {
     return {
       drinkImageUrl: "src/assets/images/coffee1.png",
       drinkName: "Coffee",
       drinkProp: "Ice",
-    }
-  }
-}
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -53,10 +56,11 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
 }
 
 .card-content-layout-pic {
-  width: 20%;
+  width: 30%;
 }
 
 .order-pic {
@@ -67,19 +71,19 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: flex-end;
   align-self: center;
 }
 
 .card-content-layout-text-name {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: lighter;
   font-family: $font-title;
-  width: 100%;
 }
 
 .card-content-layout-text-prop {
   font-family: $font-title;
-  width: 100%;
+  font-size: 1.5rem;
 }
 
 .card-ordernumber {

@@ -6,7 +6,7 @@
         <div class="drink-name">{{ drinkName }}</div>
         <div class="drink-price">¥{{ drinkPrice }}</div>
       </div>
-      <div class="drink-cation">+</div>
+      <div class="drink-cation">-</div>
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@
   margin: 10px;
   padding: 10px;
   width: 44%;
-  height: 13rem;
+  height: 16rem;
   border-radius: 10px;
   border: 1px transparent solid;
   box-shadow: $box-shadow-common;
@@ -25,7 +25,7 @@
 }
 .drink-pic {
   width: 50%;
-  max-width: 12rem;
+  max-width: 10rem;
 }
 .drink-textWithAction {
   width: 100%;
@@ -68,7 +68,15 @@ export default {
       drinkImageUrl: "src/assets/images/coffee1.png",
       drinkName: "Coffee",
       drinkPrice: "19.00",
+      drinkProp: "Ice",
+      addCard: false,
     };
+  },
+  methods: {
+    getText() {
+      console.log("getText");
+      this.addCard = true;
+    },
   },
 };
 </script>
