@@ -1,12 +1,12 @@
 <template>
-  <div class="card">
+  <div class="card" @click="changeCardStatus">
     <img class="drink-pic" :src="drinkImageUrl" />
     <div class="drink-textWithAction">
       <div class="drink-content">
         <div class="drink-name">{{ drinkName }}</div>
         <div class="drink-price">¥{{ drinkPrice }}</div>
       </div>
-      <div class="drink-cation">-</div>
+      <div class="drink-cation">+</div>
     </div>
   </div>
 </template>
@@ -63,19 +63,18 @@
 </style>
 <script>
 export default {
-  setup() {
+  data() {
     return {
       drinkImageUrl: "src/assets/images/coffee1.png",
       drinkName: "Coffee",
       drinkPrice: "19.00",
-      drinkProp: "Ice",
-      addCard: false,
+      isShowCoffeeCard: false,
     };
   },
   methods: {
-    getText() {
-      console.log("getText");
-      this.addCard = true;
+    changeCardStatus() {
+      this.isShowCoffeeCard = true;
+      console.log("1");
     },
   },
 };

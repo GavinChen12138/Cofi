@@ -183,14 +183,14 @@ export default {
   font-family: $font-title;
   position: fixed;
   top: 0;
-  z-index: 999;
+  z-index: 10;
   width: 100%;
   background-image: linear-gradient(white, transparent);
 }
 .tabbar {
   position: fixed;
   bottom: 0;
-  z-index: 999;
+  z-index: 10;
   width: 100%;
   font-family: $font-title;
   --icon-active: #275efe;

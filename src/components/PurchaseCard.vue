@@ -12,7 +12,7 @@
       </div>
       <div class="card-ordernumber">
         Order Code is<br />
-        1123
+        112
       </div>
     </div>
   </div>

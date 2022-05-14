@@ -1,11 +1,7 @@
 <template>
   <nav-tab></nav-tab>
-  <div class="phoneview">
-    <router-view></router-view>
-  </div>
+  <router-view></router-view>
 </template>
 <style lang="scss" scoped>
-.phoneview {
-}
 </style>
 <script></script>

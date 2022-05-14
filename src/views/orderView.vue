@@ -26,15 +26,11 @@
       <DrinkCard></DrinkCard>
       <DrinkCard></DrinkCard>
       <DrinkCard></DrinkCard>
-      <DrinkCard></DrinkCard>
-      <DrinkCard></DrinkCard>
-      <DrinkCard></DrinkCard>
-      <DrinkCard></DrinkCard>
     </div>
   </div>
 </template>
 <script setup>
-import DrinkCard from "/Users/fan/Desktop/Ex/FP1/FP1/src/components/DrinkCard.vue";
+import DrinkCard from "../components/DrinkCard.vue";
 </script>
 <style lang="scss" scoped>
 .search-input {
