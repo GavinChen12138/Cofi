@@ -6,6 +6,12 @@
 </template>
 
 <style>
+.layout-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 </style>
 <script setup>
 import PurchaseCard from "../components/PurchaseCard.vue";

@@ -26,8 +26,12 @@
       <DrinkCard></DrinkCard>
       <DrinkCard></DrinkCard>
       <DrinkCard></DrinkCard>
+      <DrinkCard></DrinkCard>
+      <DrinkCard></DrinkCard>
+      <DrinkCard></DrinkCard>
     </div>
   </div>
+  <div style="position: fixed">card</div>
 </template>
 <script setup>
 import DrinkCard from "../components/DrinkCard.vue";
