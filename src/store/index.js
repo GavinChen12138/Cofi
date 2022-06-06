@@ -4,9 +4,16 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    count: 0,
+  },
   getters: {},
-  mutations: {},
+  mutations: {
+    // 定义mutations
+    addCoffee(state, payload) {
+      state.coffee += payload;
+    },
+  },
   actions: {},
   modules: {},
 });

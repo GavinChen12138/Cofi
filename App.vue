@@ -1,6 +1,5 @@
 <template>
-  <div style="max-width: 100vw" class="text-common">
-    <div class="header-title">{{ headerTitle }}</div>
+  <div>
     <nav class="tabbar" setActiveMenu="menu-1">
       <div>
         <input id="menu-1" type="radio" name="menu" checked />
@@ -129,7 +128,6 @@
     <router-view></router-view>
   </div>
 </template>
-
 <script>
 export default {
   name: "App",
@@ -154,6 +152,9 @@ export default {
       ],
     };
   },
+  mounted() {
+    this.$router.push("/");
+  },
   methods: {
     toPurchase() {
       this.$router.push("/purchase");
@@ -168,26 +169,17 @@ export default {
       this.headerTitle = "MENU";
     },
   },
-  mounted() {
-    this.$router.push("/");
-  },
 };
 </script>
 
 <style lang="scss" scoped>
-@font-face {
-  font-family: "DIN Condensed Bold";
-  src: url("@/assets/fonts/DIN_Condensed_Bold.ttf");
-}
-.text-common {
-  font-family: "DIN Condensed Bold";
-}
 .header-title {
   font-size: 40px;
   font-weight: bold;
-  color: #171c28;
+  color: rgb(27, 27, 27);
   text-align: center;
   margin-bottom: 10px;
+
   position: fixed;
   top: 0;
   z-index: 10;
