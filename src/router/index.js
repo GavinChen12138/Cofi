@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "@/views/HomeView.vue";
-import PurchaseView from "../views/PurchaseView.vue";
-import MyView from "../views/MyView.vue";
+import PurchaseView from "@/views/PurchaseView.vue";
+import MyView from "@/views/MyView.vue";
 
 Vue.use(VueRouter);
 

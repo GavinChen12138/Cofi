@@ -1,78 +1,109 @@
 <template>
-  <div>
+  <div class="">
     <div style="height: 40px"></div>
-    <v-stepper v-model="e13" vertical>
-      <v-stepper-step step="1" complete> Name of step 1 </v-stepper-step>
+    <div class="d-flex flex-row" style="padding: 18px">
+      <v-row rows="12">
+        <v-col v-for="(order, i) in orders" :key="i" cols="12">
+          <v-card min-width="360px" class="card-center">
+            <v-stepper
+              v-model="order.orderStatus"
+              vertical
+              style="box-shadow: none"
+              alt-labels
+            >
+              <v-stepper-step
+                :complete="order.orderStatus > 1"
+                step="1"
+                color="#000000"
+              >
+                已下单
+              </v-stepper-step>
 
-      <v-stepper-content step="1">
-        <v-card color="grey lighten-1" class="mb-12" height="200px"></v-card>
-        <v-btn color="primary" @click="e13 = 2"> Continue </v-btn>
-        <v-btn text> Cancel </v-btn>
-      </v-stepper-content>
+              <v-stepper-step
+                :complete="order.orderStatus > 2"
+                step="2"
+                color="#000000"
+                >正在制作中</v-stepper-step
+              >
 
-      <v-stepper-step step="2" complete> Name of step 2 </v-stepper-step>
-
-      <v-stepper-content step="2">
-        <v-card color="grey lighten-1" class="mb-12" height="200px"></v-card>
-        <v-btn color="primary" @click="e13 = 3"> Continue </v-btn>
-        <v-btn text> Cancel </v-btn>
-      </v-stepper-content>
-
-      <v-stepper-step :rules="[() => false]" step="3">
-        Ad templates
-        <small>Alert message</small>
-      </v-stepper-step>
-
-      <v-stepper-content step="3">
-        <v-card color="grey lighten-1" class="mb-12" height="200px"></v-card>
-        <v-btn color="primary" @click="e13 = 4"> Continue </v-btn>
-        <v-btn text> Cancel </v-btn>
-      </v-stepper-content>
-
-      <v-stepper-step step="4"> View setup instructions </v-stepper-step>
-
-      <v-stepper-content step="4">
-        <v-card color="grey lighten-1" class="mb-12" height="200px"></v-card>
-        <v-btn color="primary" @click="e13 = 1"> Continue </v-btn>
-        <v-btn text> Cancel </v-btn>
-      </v-stepper-content>
-    </v-stepper>
+              <v-stepper-step
+                :complete="order.orderStatus > 3"
+                step="3"
+                color="#000000"
+                >请取餐</v-stepper-step
+              >
+            </v-stepper>
+            <div class="layout-center">
+              <div style="font-size: 2rem">
+                {{ order.name }}
+              </div>
+              <div style="color: gray">
+                {{ tempOptions[order.temp] }},{{ sugarOptions[order.sugar] }}
+              </div>
+              <div>取餐码</div>
+              <div>{{ order.qrCodeNumber }}</div>
+              <vue-qr
+                :text="order.qrCodeNumber"
+                :size="qrSize"
+                colorDark="black"
+                colorLight="white"
+              >
+              </vue-qr>
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
+    <div style="height: 60px"></div>
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .layout-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+.card-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
 </style>
 <script>
+import vueQr from "vue-qr";
 export default {
-  name: "HomeView",
   data() {
     return {
-      e13: 1,
-      Temp: "",
-      sugar: "",
+      e6: 1,
+      ordercode: "",
+      orders: [],
+      tempOptions: ["Ice", "Hot", "Warm"],
+      sugarOptions: ["No sugar", "Half sugar", "Regular sugar"],
+      temp: 0,
+      sugar: 0,
+      qrSize: 120,
     };
   },
+  components: {
+    vueQr,
+  },
+  mounted() {
+    this.getOrders();
+  },
   methods: {
-    addClick(item) {
-      this.overlay = true;
-      this.absolute = true;
-      this.opacity = 0.6;
-      this.clickItem = item;
-    },
-    coffeeOrderClick() {
-      this.$store.commit("addCoffee", {
-        name: this.clickItem.name,
-        price: this.clickItem.price,
-        temp: this.Temp,
-        sugar: this.sugar,
-      });
-      this.overlay = false;
+    getOrders() {
+      this.$axios
+        .get("http://localhost:8080/static/orderlist.json")
+        .then((res) => {
+          console.log(res.data.orders);
+          this.orders = res.data.orders;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };

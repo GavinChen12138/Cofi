@@ -2,7 +2,7 @@
   <div>
     <v-carousel
       :show-arrows="false"
-      height="300px"
+      height="auto"
       cycle
       hide-delimiter-background
       delimiter-icon="mdi-minus"
@@ -16,14 +16,15 @@
     <div class="d-flex flex-row" style="padding: 18px">
       <v-row>
         <v-col v-for="(item, i) in items" :key="i" cols="6">
-          <v-card class="mx-auto rounded-xl elevation-20" max-width="400">
+          <v-card class="mx-auto elevation-20" max-width="400">
             <v-img
               class="white--text align-end"
               height="120px"
               width="160px"
               contain
               :src="item.src"
-            ></v-img>
+            >
+            </v-img>
 
             <v-card-subtitle style="font-size: 1.7rem">{{
               item.name
@@ -79,7 +80,7 @@
         <v-card-text>
           <h2 class="title mb-2">Temperature</h2>
 
-          <v-chip-group v-model="Temp" column mandatory>
+          <v-chip-group v-model="temp" column mandatory>
             <v-chip filter outlined>Ice</v-chip>
             <v-chip filter outlined>Hot</v-chip>
             <v-chip filter outlined>Warm</v-chip>
@@ -98,12 +99,25 @@
         </v-card-text>
       </v-card>
     </v-overlay>
+    <v-snackbar v-model="snackbar" top>
+      You selected {{ clickItem.name }}, {{ tempOptions[temp] }},
+      {{ sugarOptions[sugar] }}
+      <template v-slot:action="{ attrs }">
+        <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
 <script>
 export default {
   name: "HomeView",
+  //启动时axios从static/data.json 获取items数据
+  mounted() {
+    this.getItems();
+  },
   methods: {
     addClick(item) {
       this.overlay = true;
@@ -115,10 +129,23 @@ export default {
       this.$store.commit("addCoffee", {
         name: this.clickItem.name,
         price: this.clickItem.price,
-        temp: this.Temp,
+        temp: this.temp,
         sugar: this.sugar,
       });
       this.overlay = false;
+      this.snackbar = true;
+    },
+    //axios从static/data.json 获取items数据
+    getItems() {
+      this.$axios
+        .get("http://localhost:8080/static/drinklist.json")
+        .then((res) => {
+          console.log(res.data.items);
+          this.items = res.data.items;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   data() {
@@ -133,9 +160,12 @@ export default {
         price: "",
         src: "",
       },
-      sugar: "",
-      Temp: "",
+      snackbar: false,
       dark: false,
+      tempOptions: ["Ice", "Hot", "Warm"],
+      sugarOptions: ["No sugar", "Half sugar", "Regular sugar"],
+      temp: 0,
+      sugar: 0,
       headPics: [
         {
           src: "https://upload.cc/i1/2022/06/05/RW0A7J.jpg",
@@ -147,50 +177,7 @@ export default {
           src: "https://upload.cc/i1/2022/06/05/JoGBUT.png",
         },
       ],
-      items: [
-        {
-          id: 1,
-          name: "Flat White",
-          price: "$3.99",
-          src: "https://s1.ax1x.com/2022/06/04/Xd98sg.png",
-        },
-        {
-          id: 2,
-          name: "Expresso",
-          price: "$4.99",
-          src: "https://s1.ax1x.com/2022/06/04/Xd9tds.png",
-        },
-        {
-          id: 3,
-          name: "Drink 3",
-          price: "$5.99",
-          src: "https://s1.ax1x.com/2022/06/04/Xd9Non.png",
-        },
-        {
-          id: 4,
-          name: "Drink 4",
-          price: "$6.99",
-          src: "https://s1.ax1x.com/2022/06/04/Xd9YZj.png",
-        },
-        {
-          id: 5,
-          name: "Drink 5",
-          price: "$7.99",
-          src: "https://s1.ax1x.com/2022/06/04/Xd9GLQ.png",
-        },
-        {
-          id: 6,
-          name: "Drink 6",
-          price: "$6.99",
-          src: "https://s1.ax1x.com/2022/06/04/Xd98sg.png",
-        },
-        {
-          id: 7,
-          name: "Drink 7",
-          price: "$5.99",
-          src: "https://s1.ax1x.com/2022/06/04/Xd9Non.png",
-        },
-      ],
+      items: [],
     };
   },
 };

@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Flat White",
+        "price": "$3.99",
+        "src": "https://s1.ax1x.com/2022/06/04/Xd98sg.png"
+    },
+    {
+        "id": 2,
+        "name": "Expresso",
+        "price": "$4.99",
+        "src": "https://s1.ax1x.com/2022/06/04/Xd9tds.png"
+    },
+    {
+        "id": 3,
+        "name": "Drink 3",
+        "price": "$5.99",
+        "src": "https://s1.ax1x.com/2022/06/04/Xd9Non.png"
+    },
+    {
+        "id": 4,
+        "name": "Drink 4",
+        "price": "$6.99",
+        "src": "https://s1.ax1x.com/2022/06/04/Xd9YZj.png"
+    },
+    {
+        "id": 5,
+        "name": "Drink 5",
+        "price": "$7.99",
+        "src": "https://s1.ax1x.com/2022/06/04/Xd9GLQ.png"
+    },
+    {
+        "id": 6,
+        "name": "Drink 6",
+        "price": "$6.99",
+        "src": "https://s1.ax1x.com/2022/06/04/Xd98sg.png"
+    },
+    {
+        "id": 7,
+        "name": "Drink 7",
+        "price": "$5.99",
+        "src": "https://s1.ax1x.com/2022/06/04/Xd9Non.png"
+    }
+]
