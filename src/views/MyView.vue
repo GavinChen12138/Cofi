@@ -91,7 +91,8 @@
           height="230"
           style="box-shadow: 0px 0px 10px 2px #d0d0d0; border-radius: 15px"
         >
-          <div class="layout-center" style="margin-top: 90px">
+          <div class="layout-center" style="margin-top: 30px">
+            <div>Cofi Login</div>
             <input
               placeholder="Phone Number"
               type="text"

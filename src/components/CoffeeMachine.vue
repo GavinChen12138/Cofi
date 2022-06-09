@@ -3,7 +3,7 @@
     id="coffee-wrap"
     style="
       transform: scale(0.4);
-      transform-origin: -33% -120%;
+      transform-origin: -33% -70%;
       background-color: transparent;
     "
   >
@@ -430,9 +430,9 @@ See you.
   height: 350px;
   background: #fff;
   position: absolute;
-  top: 50%;
-  left: 50%;
   z-index: 1;
+  top: 25%;
+  left: 50%;
 }
 
 .mug,

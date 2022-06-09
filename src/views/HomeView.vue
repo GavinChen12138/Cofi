@@ -1,22 +1,29 @@
 <template>
-  <div>
-    <v-carousel
-      width="100%"
-      :show-arrows="false"
-      height="auto"
-      cycle
-      hide-delimiter-background
-      delimiter-icon="mdi-minus"
-    >
-      <v-carousel-item
-        v-for="(headPic, i) in headPics"
-        :key="i"
-        :src="headPic.src"
-      ></v-carousel-item>
-    </v-carousel>
+  <div class="layout-center">
+    <div style="width: 100%; max-width: 700px">
+      <v-carousel
+        width="100%"
+        :show-arrows="false"
+        height="auto"
+        cycle
+        hide-delimiter-background
+        delimiter-icon="mdi-minus"
+      >
+        <v-carousel-item
+          v-for="(headPic, i) in headPics"
+          :key="i"
+          :src="headPic.src"
+        ></v-carousel-item>
+      </v-carousel>
+    </div>
     <div class="d-flex flex-row" style="padding: 18px">
       <v-row>
-        <v-col v-for="(item, i) in items" :key="i" cols="6">
+        <v-col
+          v-for="(item, i) in items"
+          :key="i"
+          :cols="cardCols"
+          class="layout-center"
+        >
           <v-card
             class="mx-auto elevation-20"
             max-width="400"
@@ -123,6 +130,14 @@ export default {
   //启动时axios从static/data.json 获取items数据
   mounted() {
     this.getItems();
+    //监听设备屏幕宽度是否大于840px
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 840) {
+        this.cardCols = 3;
+      } else {
+        this.cardCols = 6;
+      }
+    });
   },
   methods: {
     addClick(item) {
@@ -154,6 +169,7 @@ export default {
       opacity: 0.46,
       overlay: false,
       zIndex: 9,
+      cardCols: 6,
       clickItem: {
         id: "",
         name: "",
