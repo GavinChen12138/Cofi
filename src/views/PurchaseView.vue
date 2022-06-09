@@ -1,38 +1,48 @@
 <template>
-  <div class="">
+  <div class="layout-center">
     <div style="height: 40px"></div>
+    <div v-if="!isLogin" class="layout-center">
+      <div>
+        <coffee-machine-vue2></coffee-machine-vue2>
+      </div>
+      <div style="font-size: 1.5rem">您还未登陆</div>
+    </div>
     <div class="d-flex flex-row" style="padding: 18px">
       <v-row rows="12">
         <v-col v-for="(order, i) in orders" :key="i" cols="12">
-          <v-card min-width="360px" class="card-center">
-            <v-stepper
-              v-model="order.orderStatus"
-              vertical
-              style="box-shadow: none"
-              alt-labels
-            >
-              <v-stepper-step
-                :complete="order.orderStatus > 1"
-                step="1"
-                color="#000000"
+          <v-card
+            min-width="340px"
+            class="card-center"
+            style="box-shadow: 0px 0px 10px 2px #d0d0d0; border-radius: 13px"
+          >
+            <div style="width: 90%">
+              <v-stepper
+                v-model="order.orderStatus"
+                style="box-shadow: none"
+                alt-labels
               >
-                已下单
-              </v-stepper-step>
-
-              <v-stepper-step
-                :complete="order.orderStatus > 2"
-                step="2"
-                color="#000000"
-                >正在制作中</v-stepper-step
-              >
-
-              <v-stepper-step
-                :complete="order.orderStatus > 3"
-                step="3"
-                color="#000000"
-                >请取餐</v-stepper-step
-              >
-            </v-stepper>
+                <v-stepper-header>
+                  <v-stepper-step
+                    :complete="order.orderStatus > 1"
+                    step="1"
+                    color="#000000"
+                  >
+                    已下单</v-stepper-step
+                  >
+                  <v-divider></v-divider>
+                  <v-stepper-step
+                    :complete="order.orderStatus > 2"
+                    step="2"
+                    color="#000000"
+                    >制作中</v-stepper-step
+                  >
+                  <v-divider></v-divider>
+                  <v-stepper-step step="3" color="#000000"
+                    >可取餐</v-stepper-step
+                  >
+                </v-stepper-header>
+              </v-stepper>
+            </div>
             <div class="layout-center">
               <div style="font-size: 2rem">
                 {{ order.name }}
@@ -40,15 +50,21 @@
               <div style="color: gray">
                 {{ tempOptions[order.temp] }},{{ sugarOptions[order.sugar] }}
               </div>
-              <div>取餐码</div>
-              <div>{{ order.qrCodeNumber }}</div>
-              <vue-qr
-                :text="order.qrCodeNumber"
-                :size="qrSize"
-                colorDark="black"
-                colorLight="white"
-              >
-              </vue-qr>
+              <div v-if="order.orderStatus > 1" class="layout-center">
+                <div>取餐码</div>
+                <div>{{ order.qrCodeNumber }}</div>
+                <vue-qr
+                  :text="order.qrCodeNumber"
+                  :size="qrSize"
+                  colorDark="black"
+                  colorLight="white"
+                >
+                </vue-qr>
+              </div>
+              <div v-else class="layout-center" style="padding-bottom: -50px">
+                <div>制作中</div>
+                <coffee-machine-vue2></coffee-machine-vue2>
+              </div>
             </div>
           </v-card>
         </v-col>
@@ -67,13 +83,14 @@
 }
 .card-center {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
 </style>
 <script>
 import vueQr from "vue-qr";
+import CoffeeMachineVue2 from "../components/CoffeeMachine2.vue";
 export default {
   data() {
     return {
@@ -89,9 +106,15 @@ export default {
   },
   components: {
     vueQr,
+    CoffeeMachineVue2,
   },
   mounted() {
-    this.getOrders();
+    console.log(this.$store.state.isLogin);
+    //从store获取isLogin登陆状态
+    this.isLogin = this.$store.state.isLogin;
+    if (this.isLogin) {
+      this.getOrders();
+    }
   },
   methods: {
     getOrders() {

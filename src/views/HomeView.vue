@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-carousel
+      width="100%"
       :show-arrows="false"
       height="auto"
       cycle
@@ -16,7 +17,11 @@
     <div class="d-flex flex-row" style="padding: 18px">
       <v-row>
         <v-col v-for="(item, i) in items" :key="i" cols="6">
-          <v-card class="mx-auto elevation-20" max-width="400">
+          <v-card
+            class="mx-auto elevation-20"
+            max-width="400"
+            style="box-shadow: 0px 0px 10px 2px #d0d0d0; border-radius: 13px"
+          >
             <v-img
               class="white--text align-end"
               height="120px"
@@ -60,6 +65,7 @@
         max-width="410"
         transition="slide-x-transition"
         bottom
+        style="border-radius: 10px"
       >
         <v-btn icon small @click="overlay = false">
           <v-icon style="color: black">mdi-close</v-icon>
@@ -126,12 +132,6 @@ export default {
       this.clickItem = item;
     },
     coffeeOrderClick() {
-      this.$store.commit("addCoffee", {
-        name: this.clickItem.name,
-        price: this.clickItem.price,
-        temp: this.temp,
-        sugar: this.sugar,
-      });
       this.overlay = false;
       this.snackbar = true;
     },

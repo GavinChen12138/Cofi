@@ -6,7 +6,7 @@
             "src": "https://s1.ax1x.com/2022/06/04/Xd98sg.png",
             "quantity": 1,
             "total": "$3.99",
-            "orderStatus": "2",
+            "orderStatus": 1,
             "qrCodeNumber": "001",
             "temp": "2",
             "sugar": "1"
@@ -16,8 +16,18 @@
             "price": "$3.99",
             "quantity": 2,
             "total": "$3.99",
-            "orderStatus": "1",
+            "orderStatus": 2,
             "qrCodeNumber": "002",
+            "temp": "1",
+            "sugar": "0"
+        },
+        {
+            "name": "Latte",
+            "price": "$3.99",
+            "quantity": 2,
+            "total": "$3.99",
+            "orderStatus": 3,
+            "qrCodeNumber": "003",
             "temp": "1",
             "sugar": "0"
         }

@@ -4,7 +4,7 @@
       <div class="header-title">{{ headerTitle }}</div>
       <nav class="tabbar" setActiveMenu="menu-1">
         <div>
-          <input id="menu-1" type="radio" name="menu" checked />
+          <input id="menu-1" type="radio" name="menu" />
           <label for="menu-1" @click="toOrder">
             <svg
               width="277px"
@@ -77,7 +77,7 @@
             </svg>
             <span>Purchase</span>
           </label>
-          <input id="menu-3" type="radio" name="menu" />
+          <input id="menu-3" type="radio" name="menu" checked />
           <label for="menu-3" @click="toMy">
             <svg
               width="126px"
@@ -171,7 +171,8 @@ export default {
     },
   },
   mounted() {
-    this.$router.push("/");
+    this.$router.push("/my");
+    this.headerTitle = "Cofi";
   },
 };
 </script>
