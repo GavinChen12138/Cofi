@@ -9,9 +9,15 @@
     </div>
     <div class="d-flex flex-row" style="padding: 18px">
       <v-row rows="12">
-        <v-col v-for="(order, i) in orders" :key="i" cols="12">
+        <v-col
+          v-for="(order, i) in orders"
+          :key="i"
+          :cols="cardCols"
+          class="layout-center"
+        >
           <v-card
             min-width="340px"
+            max-width="500px"
             class="card-center"
             style="box-shadow: 0px 0px 10px 2px #d0d0d0; border-radius: 13px"
           >
@@ -102,6 +108,8 @@ export default {
       temp: 0,
       sugar: 0,
       qrSize: 120,
+      cardCols: 12,
+      isLogin: false,
     };
   },
   components: {
@@ -115,6 +123,13 @@ export default {
     if (this.isLogin) {
       this.getOrders();
     }
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 1134) {
+        this.cardCols = 4;
+      } else {
+        this.cardCols = 12;
+      }
+    });
   },
   methods: {
     getOrders() {

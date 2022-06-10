@@ -52,7 +52,7 @@
               <v-btn
                 icon
                 small
-                style="background-color: #171c28"
+                style="background-color: #031c85"
                 @click="addClick(item)"
               >
                 <!--点击后弹出遮罩层，显示当前点击卡片的信息-->
